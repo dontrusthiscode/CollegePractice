@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1685356598 source:c:\student\carnat\librarie\librarie\main.cpp
+	<iostream>
+	<fstream>
+	<string>
+
