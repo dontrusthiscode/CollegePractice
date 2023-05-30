@@ -4,3 +4,13 @@
 	<fstream>
 	<string>
 
+1685443015 source:c:\users\lab106(35)\desktop\collegepractice\librarie\librarie\main.cpp
+	"header.h"
+
+1685443420 c:\users\lab106(35)\desktop\collegepractice\librarie\librarie\header.h
+	<iostream>
+	<fstream>
+	<string>
+	<Windows.h>
+	<algorithm>
+
