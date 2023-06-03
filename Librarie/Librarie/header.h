@@ -319,7 +319,7 @@ void arataRoOrdBook() {
 
     Book book;
     while (bookFile >> book.titlu >> book.autor >> book.an >> book.limba >> book.tema >> book.pret >> book.copii >> book.supplier_id) {
-        if (book.limba == "romana" || "Romana" || "română" || "Română") {
+        if (book.limba == "romana" || book.limba == "Romana" || book.limba == "română" || book.limba == "Română") {
             books[count] = book;
             count++;
         }
