@@ -4,7 +4,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <Windows.h>
+//#include <Windows.h>
 #include <algorithm>
 
 
@@ -330,6 +330,58 @@ void arataRoOrdBook() {
         cout << books[i].titlu << " de " << books[i].autor << " (" << books[i].an << ") - " << books[i].tema << " - " << books[i].pret << " RON - " << books[i].copii << " copii" << endl;
     }
 }
+
+
+
+void arataNumarMaxCopii() {
+    ifstream bookFile("Books.txt");
+
+
+    Book maxCopiiCarte;
+    int maxCopii = 0;
+    Book book;
+
+    while (bookFile >> book.titlu >> book.autor >> book.an >> book.limba >> book.tema >> book.pret >> book.copii >> book.supplier_id) {
+        if (book.copii > maxCopii) {
+            maxCopii = book.copii;
+            maxCopiiCarte = book;
+        }
+    }
+
+    bookFile.close();
+    cout << "Cartea cu numarul maxim de copii (" << maxCopii << ") este:" << endl;
+    bookFile.open("Books.txt");
+    while (bookFile >> book.titlu >> book.autor >> book.an >> book.limba >> book.tema >> book.pret >> book.copii >> book.supplier_id) {
+        if (book.copii == maxCopii) {
+            cout << book.titlu << " de " << book.autor << " (" << book.an << ") - " << book.tema << " - " << book.pret << " RON - " << book.copii << " copii" ;
+        }
+    }
+    bookFile.close();
+}
+
+void arataPretulMediu(int supplierId) {
+    ifstream bookFile("Books.txt");
+
+    float total = 0;
+    int count = 0;
+    Book book;
+    while (bookFile >> book.titlu >> book.autor >> book.an >> book.limba >> book.tema >> book.pret >> book.copii >> book.supplier_id) {
+        if (book.supplier_id == supplierId) {
+            total += book.pret;
+            count++;
+        }
+    }
+
+    bookFile.close();
+    if (count == 0) {
+        cout << "Nu au fost gasit carti pentru supplierul cu id-ul: " << supplierId << endl;
+    } else {
+        float pretul_Mediu = total / count;
+        cout << "Pretul mediu pentru supplier " << supplierId << " este " << pretul_Mediu << " RON" << endl;
+    }
+}
+
+
 
 
 
