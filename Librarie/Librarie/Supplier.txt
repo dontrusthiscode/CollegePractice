@@ -1,5 +1,0 @@
-1 PenguinBooks 123MainSt 555-1234
-2 HarperCollins 456OakSt 555-5678
-3 RandomHouse 789ElmSt 555-9012
-4 VaseaCumparaturi str.vasilealecsandri 76803201
-5 Garlea str.vasilealecsandri_34/2 +37376803201
