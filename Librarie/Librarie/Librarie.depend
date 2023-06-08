@@ -1,0 +1,25 @@
+# depslib dependency file v1.0
+1685356598 source:c:\student\carnat\librarie\librarie\main.cpp
+	<iostream>
+	<fstream>
+	<string>
+
+1685443015 source:c:\users\lab106(35)\desktop\collegepractice\librarie\librarie\main.cpp
+	"header.h"
+
+1685443420 c:\users\lab106(35)\desktop\collegepractice\librarie\librarie\header.h
+	<iostream>
+	<fstream>
+	<string>
+	<Windows.h>
+	<algorithm>
+
+1686038959 source:c:\users\lab106(35)\collegepractice\librarie\librarie\main.cpp
+	"header.h"
+
+1686040403 c:\users\lab106(35)\collegepractice\librarie\librarie\header.h
+	<iostream>
+	<fstream>
+	<string>
+	<algorithm>
+
