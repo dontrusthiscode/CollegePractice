@@ -109,7 +109,7 @@ void adaogaSupplier() {
     cin >> supplier.id;
 
     cout << "Introdu numele supplierului: ";
-    cin.ignore(); // add this line to consume the newline character
+    cin.ignore(); 
     getline(cin, supplier.nume);
 
     cout << "Introdu adresa supplierului: ";
