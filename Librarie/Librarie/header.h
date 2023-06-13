@@ -1,3 +1,6 @@
+/* Va rog sa introduceti fara spatii, pentru ca in fisier spatiu se considera ca un delimitator */
+
+
 #ifndef MYLIBRARYFUNCTIONS_H
 #define MYLIBRARYFUNCTIONS_H
 
@@ -109,7 +112,7 @@ void adaogaSupplier() {
     cin >> supplier.id;
 
     cout << "Introdu numele supplierului: ";
-    cin.ignore(); 
+    cin.ignore();
     getline(cin, supplier.nume);
 
     cout << "Introdu adresa supplierului: ";
@@ -122,6 +125,7 @@ void adaogaSupplier() {
     file.close();
 }
 
+//Nustiu cum sa fac fara temporar
 void excludeBook() {
     string titlu;
 
@@ -129,9 +133,7 @@ void excludeBook() {
     getline(cin, titlu);
 
     ifstream file("Books.txt");
-
     ofstream temp("temp.txt");
-
 
     Book book;
     bool gasit = false;
@@ -155,10 +157,16 @@ void excludeBook() {
         return;
     }
 
-    remove("Books.txt");
-    rename("temp.txt", "Books.txt");
+    ofstream outFile("Books.txt");
+    ifstream tempFile("temp.txt");
 
+    outFile << tempFile.rdbuf();
+    outFile.close();
+    tempFile.close();
+
+    remove("temp.txt");
 }
+
 
 void excludeSupplier() {
     int id;
@@ -168,7 +176,6 @@ void excludeSupplier() {
 
     ifstream file("Supplier.txt");
     ofstream temp("temp.txt");
-
 
     Supplier supplier;
     bool gasit = false;
@@ -183,7 +190,6 @@ void excludeSupplier() {
 
     }
 
-
     file.close();
     temp.close();
 
@@ -193,17 +199,25 @@ void excludeSupplier() {
         return;
     }
 
-    remove("Supplier.txt");
-    rename("temp.txt", "Supplier.txt");
+    ofstream outFile("Supplier.txt");
+    ifstream tempFile("temp.txt");
+
+    outFile << tempFile.rdbuf();
+
+    outFile.close();
+    tempFile.close();
+
+    remove("temp.txt");
 }
+
 
 void updateBook() {
     string titlu;
     cout << "Introdu titlu cartii pe care vrei sa-i schimbi datele: ";
     getline(cin, titlu);
+
     ifstream file("Books.txt");
     ofstream temp("temp.txt");
-
 
     Book book;
     bool gasit = false;
@@ -235,10 +249,13 @@ void updateBook() {
         remove("temp.txt");
         return;
     }
-    remove("Books.txt");
-    rename("temp.txt", "Books.txt");
+    ofstream outFile("Books.txt");
+    ifstream tempFile("temp.txt");
+    outFile << tempFile.rdbuf();
+    outFile.close();
+    tempFile.close();
+    remove("temp.txt");
 }
-
 
 void updateSupplier() {
     int id;
@@ -270,10 +287,12 @@ void updateSupplier() {
         remove("temp.txt");
         return;
     }
-
-    remove("Supplier.txt");
-    rename("temp.txt", "Supplier.txt");
-
+    ofstream outFile("Supplier.txt");
+    ifstream tempFile("temp.txt");
+    outFile << tempFile.rdbuf();
+    outFile.close();
+    tempFile.close();
+    remove("temp.txt");
 }
 
 void creazaLivrare() {
@@ -307,10 +326,6 @@ void creazaLivrare() {
     livrareFile.close();
 }
 
-bool comparaBook(Book book1, Book book2) {
-    return (book1.titlu < book2.titlu);
-}
-
 void arataRoOrdBook() {
     ifstream bookFile("Books.txt");
 
@@ -325,11 +340,23 @@ void arataRoOrdBook() {
         }
     }
     bookFile.close();
-    sort(books, books + count, comparaBook);
+
+    // Mewtoda insertiei
+    for (int i = 1; i < count; i++) {
+        Book key = books[i];
+        int j = i - 1;
+        while (j >= 0 && books[j].titlu > key.titlu) {
+            books[j + 1] = books[j];
+            j--;
+        }
+        books[j + 1] = key;
+    }
+
     for (int i = 0; i < count; i++) {
         cout << books[i].titlu << " de " << books[i].autor << " (" << books[i].an << ") - " << books[i].tema << " - " << books[i].pret << " RON - " << books[i].copii << " copii" << endl;
     }
 }
+
 
 
 
